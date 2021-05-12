@@ -1,11 +1,8 @@
 package ru.zateev.spring.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.zateev.spring.rest.entity.Employee;
-import ru.zateev.spring.rest.exception_handling.EmployeeIncorrectData;
 import ru.zateev.spring.rest.exception_handling.NoSuchEmployeeException;
 import ru.zateev.spring.rest.service.EmployeeService;
 
@@ -39,19 +36,16 @@ public class MyRESTController {
         return employee;
     }
 
-    @ExceptionHandler
-    public ResponseEntity<EmployeeIncorrectData> handleException( NoSuchEmployeeException noSuchEmployeeException) {
-        EmployeeIncorrectData employeeIncorrectData = new EmployeeIncorrectData();
-        employeeIncorrectData.setInfo(noSuchEmployeeException.getMessage());
-
-        return new ResponseEntity<>(employeeIncorrectData, HttpStatus.NOT_FOUND);
+    @PostMapping("/employees")
+    public Employee addNewEmployee (@RequestBody Employee employee){
+        employeeService.saveEmployee(employee);
+        return employee;
     }
 
-    @ExceptionHandler
-    public ResponseEntity<EmployeeIncorrectData> handleException( NumberFormatException numberFormatException) {
-        EmployeeIncorrectData employeeIncorrectData = new EmployeeIncorrectData();
-        employeeIncorrectData.setInfo(" неверный тип данных ");
-
-        return new ResponseEntity<>(employeeIncorrectData, HttpStatus.BAD_REQUEST);
+    @PutMapping ("/employees")
+    public Employee updateEmployee (@RequestBody Employee employee){
+        employeeService.saveEmployee(employee);
+        return employee;
     }
+
 }
