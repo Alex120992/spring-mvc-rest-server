@@ -7,7 +7,6 @@ import ru.zateev.spring.rest.dao.EmployeeDao;
 import ru.zateev.spring.rest.entity.Employee;
 import java.util.List;
 
-/** Service - это компонент, через который контроллер обращается к Dao*/
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
     @Autowired

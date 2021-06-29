@@ -24,9 +24,6 @@ public class MyRESTController {
 
     }
 
-    /* В фигурных скобках мы делаем pathVariable для передачи id из url
-     * Который передаем в метод с помощью аннотации PathVariable
-     * Это переменная получаем */
     @GetMapping("/employees/{id}")
     public Employee getEmployee(@PathVariable Integer id) {
         Employee employee = employeeService.getEmployee(id);
